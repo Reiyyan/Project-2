@@ -6,13 +6,12 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Authentication from './components/Authentication';
 import { Container } from '@mui/material';
-
+import Box from '@mui/material/Box';
+import Footer from './components/Footer';
 export default function App() {
   const [darkMode, setDarkMode] = React.useState(true);
-  const [loggedIn, setLoggedIn] = React.useState(!false);
-
-
-  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [user, setUser] = React.useState(null);
 
   const theme = React.useMemo(
     () =>
@@ -43,10 +42,17 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Navbar toggleTheme={setDarkMode} themeMode={darkMode} />
-      <Container sx={{ mt: '10%' }}>
-        {loggedIn ? <Home /> : <Authentication setLoggedIn={setLoggedIn} />}
-      </Container>
+      <Navbar toggleTheme={setDarkMode} themeMode={darkMode} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} user={user} />
+      <Box sx={{
+        minHeight: '80vh',
+        backgroundImage: (darkMode ? `url(./static/images/night.svg)` : `url(./static/images/day-light.jpg)`),
+        backgroundPosition: 'bottom',
+        backgroundSize: 'cover',
+        paddingTop: (loggedIn ? 0 : '12.5%')
+      }}>
+        {loggedIn ? <Home theme={darkMode} /> : <Authentication setLoggedIn={setLoggedIn} setUser={setUser}/>}
+        <Footer sx={{ position: 'relative', bottom: '0px', textAlign: 'center',  left: '50%'}} />
+      </Box>
     </ThemeProvider>
   );
 }

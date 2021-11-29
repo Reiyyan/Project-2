@@ -3,29 +3,21 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
-
+import ThermostatSharpIcon from '@mui/icons-material/ThermostatSharp';
+import LogoutSharpIcon from '@mui/icons-material/LogoutSharp';
+import { Button } from '@mui/material';
 export default function Navbar(props) {
-    const [auth, setAuth] = React.useState(true);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
-
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
     const handleTheme = () => {
         props.toggleTheme(!props.themeMode);
+    };
+
+    const handleLogout = () => {
+        props.setLoggedIn(!props.loggedIn);
+        props.setUser('');
     };
 
     return (
@@ -33,17 +25,12 @@ export default function Navbar(props) {
 
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                    >
-                        <div>MENU</div>
-                    </IconButton>
+                    <ThermostatSharpIcon fontSize="large" />
+                    <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+                        Weatherly
+                    </Typography>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Photos
+                        {props.user ? `Hello, ${props.user}` : ''}
                     </Typography>
                     <FormGroup>
                         <FormControlLabel
@@ -54,22 +41,13 @@ export default function Navbar(props) {
                                     aria-label="login switch"
                                 />
                             }
-                            label={auth ? 'Logout' : 'Login'}
+                            label={props.themeMode ? 'Dark' : 'Light'}
                         />
                     </FormGroup>
-                    {auth && (
-                        <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <div>AccountCircle</div>
-                            </IconButton>
-                        </div>
+                    {props.loggedIn && (
+                        <Button variant="contained" color='secondary' endIcon={<LogoutSharpIcon />} onClick={handleLogout}>
+                            Logout
+                        </Button>
                     )}
                 </Toolbar>
             </AppBar>

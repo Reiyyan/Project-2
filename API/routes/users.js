@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/login', async function (req, res, next) {
   const response = await users.UserLogin(req.body.username, req.body.password);
-  res.status(response.status).send(response.data);
+  res.send(response.data);
 });
 
 module.exports = router;

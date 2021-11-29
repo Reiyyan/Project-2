@@ -1,13 +1,12 @@
 import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
-export default function Home() {
+import Weather from './Weather';
+export default function Home(props) {
     const matches = useMediaQuery('(prefers-color-scheme: dark)');
-    
+
     return (
         <>
-            Hi Rei 
-            {` ${matches}`}
+            <Weather dark={props.theme}/>
         </>
     );
 }
