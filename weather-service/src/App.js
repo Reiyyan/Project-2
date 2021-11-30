@@ -1,11 +1,9 @@
 import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Authentication from './components/Authentication';
-import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import Footer from './components/Footer';
 export default function App() {

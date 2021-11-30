@@ -12,7 +12,6 @@ import NightsStaySharpIcon from '@mui/icons-material/NightsStaySharp';
 export default function Weather() {
     const [weather, setWeather] = React.useState(null);
     const [place, setPlace] = React.useState('');
-    const backgroundName = 'night';
 
     React.useEffect(() => {
         if (place !== '' && place !== null) {
