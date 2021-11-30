@@ -11,4 +11,15 @@ async function UserLogin(username, password) {
     }
 }
 
-module.exports = { UserLogin };
+async function SignUp(username, password) {
+    try {
+        const user = new UsersModel();
+        const result = await user.SignUpUser(username, password);
+        return result
+    }
+    catch (err) {
+        return err
+    }
+}
+
+module.exports = { UserLogin, SignUp };

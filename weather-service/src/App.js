@@ -44,7 +44,7 @@ export default function App() {
       <CssBaseline />
       <Navbar toggleTheme={setDarkMode} themeMode={darkMode} loggedIn={loggedIn} setLoggedIn={setLoggedIn} setUser={setUser} user={user} />
       <Box sx={{
-        minHeight: '80vh',
+        minHeight: '95vh',
         backgroundImage: (darkMode ? `url(./static/images/night.svg)` : `url(./static/images/day-light.jpg)`),
         backgroundPosition: 'bottom',
         backgroundSize: 'cover',

@@ -15,3 +15,17 @@ export async function Login(username, password) {
 
     return response;
 }
+
+export async function SignUp(username, password) {
+    let response = await axios.post(`${baseURL}/users/signup`, { username, password })
+        .then(function (response) {
+            console.log(response);
+            return response;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return error;
+        })
+
+    return response;
+}

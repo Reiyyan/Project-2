@@ -12,4 +12,9 @@ router.post('/login', async function (req, res, next) {
   res.send(response.data);
 });
 
+router.post('/signup', async function (req, res, next) {
+  const response = await users.SignUp(req.body.username, req.body.password);
+  res.send(response.data);
+});
+
 module.exports = router;

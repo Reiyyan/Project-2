@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import { Login } from '../LoginAPI';
+import { Login, SignUp } from '../LoginAPI';
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +17,7 @@ export default function Authentication(props) {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [open, setOpen] = React.useState(false);
+    const [signUp, setSignUp] = React.useState(true);
     const [toastMessage, setToastMessage] = React.useState('');
 
     const handleUsername = (event) => {
@@ -37,18 +38,32 @@ export default function Authentication(props) {
             setOpen(true);
         }
         else {
-            Login(username, password).then(e => {
-                if (e?.data?.user !== null) {
-                    props.setUser(e?.data?.user)
-                    props.setLoggedIn(true)
-                }
-                else {
-                    setToastMessage("Incorrect Username and Password Combination!");
-                    setOpen(true);
-                }
-            });
+            if (signUp === false) {
+                SignUp(username, password).then(e => {
+                    if (e?.data?.user !== null) {
+                        props.setUser(e?.data?.user)
+                        props.setLoggedIn(true)
+                    }
+                });
+            }
+            else {
+                Login(username, password).then(e => {
+                    if (e?.data?.user !== null) {
+                        props.setUser(e?.data?.user)
+                        props.setLoggedIn(true)
+                    }
+                    else {
+                        setToastMessage("Incorrect Username and Password Combination!");
+                        setOpen(true);
+                    }
+                });
+            }
         }
     };
+
+    const toggleSignUp = () => {
+        setSignUp(!signUp);
+    }
 
     return (
         <>
@@ -59,7 +74,7 @@ export default function Authentication(props) {
                     height="150"
                     image="/static/images/weather.jpg"
                     sx={{
-                        objectPosition:"top"
+                        objectPosition: "top"
                     }}
                 />
                 <CardContent>
@@ -71,10 +86,19 @@ export default function Authentication(props) {
                     <TextField id="username" label="Username" variant="standard" autoComplete="username" sx={{ mx: '5%', width: '-webkit-fill-available' }} value={username} onChange={handleUsername} />
                     <TextField id="password" label="Password" type="password" autoComplete="current-password" variant="standard" sx={{ mx: '5%', mt: '5%', width: '-webkit-fill-available' }} value={password} onChange={handlePassword} />
                 </form>
+
                 <CardActions sx={{ justifyContent: 'right' }}>
-                    <Button size="medium" sx={{ mx: '5%', mt: '2%' }} variant="outlined" onClick={handleLogin}>Login</Button>
+                    <Button size="medium" sx={{ mx: '5%', mt: '2%' }} variant="outlined" onClick={handleLogin}>
+                        {(signUp ? "Log In" : "Sign Up")}
+                    </Button>
                 </CardActions>
             </Card>
+
+            <Box sx={{ textAlign: 'center' }}>
+                <Button variant="text" textAlign="center" onClick={toggleSignUp}>
+                    {(signUp ? "Sign Up" : "Log In")}
+                </Button>
+            </Box>
 
             <Collapse in={open} sx={{ my: '2rem' }}>
                 <Alert
