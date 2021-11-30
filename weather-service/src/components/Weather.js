@@ -521,15 +521,3 @@ export default function Weather() {
         </>
     );
 }
-
-        // https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Toronto&types=(cities)&key=AIzaSyBNvFrrhZ9sidDg2irjvRIzPqMh5dq6fhI
-        // https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJpTvG15DL1IkRd8S0KlBVNTI&fields=photo&key=AIzaSyBNvFrrhZ9sidDg2irjvRIzPqMh5dq6fhI
-        // https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=Aap_uEB5fLpbVJjNk1O5EZ5u4f0Vv2aaXqznINRe_R8T6vqq2rpbNhdtrexmJnm9KW_KMdKopyr8z2rD8s5v9kAJ1VrcE4ArPjooUtQ2YN2pt6n8PjBeBJbpGDQ_LvDJZEEH_SDkWU8he78J10fbaflaac6fvsDBxkhrvcjNUvPuucIH00SN&key=AIzaSyBNvFrrhZ9sidDg2irjvRIzPqMh5dq6fhI
-
-
-
-
-
-// https://maps.googleapis.com/maps/api/place/photo?&photoreference=Aap_uEB5fLpbVJjNk1O5EZ5u4f0Vv2aaXqznINRe_R8T6vqq2rpbNhdtrexmJnm9KW_KMdKopyr8z2rD8s5v9kAJ1VrcE4ArPjooUtQ2YN2pt6n8PjBeBJbpGDQ_LvDJZEEH_SDkWU8he78J10fbaflaac6fvsDBxkhrvcjNUvPuucIH00SN&key=AIzaSyBNvFrrhZ9sidDg2irjvRIzPqMh5dq6fhI
-
-// https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=&key=AIzaSyBNvFrrhZ9sidDg2irjvRIzPqMh5dq6fhI`
