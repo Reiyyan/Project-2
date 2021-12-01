@@ -60,8 +60,4 @@ class Users {
 
 }
 
-let x = new Users;
-
-x.SignUpUser("Rei", "test");
-
 module.exports = Users
