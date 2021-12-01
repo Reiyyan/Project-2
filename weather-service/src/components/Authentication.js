@@ -28,7 +28,7 @@ export default function Authentication(props) {
         setPassword(event.target.value);
     };
 
-    const handleLogin = (event) => {
+    const handleLogin = () => {
         if (username === '') {
             setToastMessage("Please Enter Username!")
             setOpen(true);
@@ -65,6 +65,12 @@ export default function Authentication(props) {
         setSignUp(!signUp);
     }
 
+    const handleEnter = (event) => {
+        if (event.charCode === 13) {
+            handleLogin();
+        }
+    }
+
     return (
         <>
             <Card sx={{ maxWidth: 345, mx: 'auto' }}>
@@ -83,12 +89,12 @@ export default function Authentication(props) {
                     </Typography>
                 </CardContent>
                 <form>
-                    <TextField id="username" label="Username" variant="standard" autoComplete="username" sx={{ mx: '5%', width: '-webkit-fill-available' }} value={username} onChange={handleUsername} />
-                    <TextField id="password" label="Password" type="password" autoComplete="current-password" variant="standard" sx={{ mx: '5%', mt: '5%', width: '-webkit-fill-available' }} value={password} onChange={handlePassword} />
+                    <TextField id="username" label="Username" variant="standard" autoComplete="username" sx={{ mx: '5%', width: '-webkit-fill-available' }} value={username} onChange={handleUsername} onKeyPress={handleEnter}/>
+                    <TextField id="password" label="Password" type="password" autoComplete="current-password" variant="standard" sx={{ mx: '5%', mt: '5%', width: '-webkit-fill-available' }} value={password} onChange={handlePassword} onKeyPress={handleEnter}/>
                 </form>
 
                 <CardActions sx={{ justifyContent: 'right' }}>
-                    <Button size="medium" sx={{ mx: '5%', mt: '2%' }} variant="outlined" onClick={handleLogin}>
+                    <Button size="medium" sx={{ mx: '5%', mt: '2%' }} variant="outlined" onClick={handleLogin} >
                         {(signUp ? "Log In" : "Sign Up")}
                     </Button>
                 </CardActions>

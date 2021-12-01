@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import * as WeatherAPI from '../WeatherAPI';
 // import * as placesAPI from '../placesAPI';
@@ -16,7 +16,6 @@ export default function Weather() {
     React.useEffect(() => {
         if (place !== '' && place !== null) {
             WeatherAPI.getWeather(place).then(e => {
-                console.log("Getting Weather Fresh");
                 setWeather(e?.data);
             });
         }
@@ -75,51 +74,46 @@ export default function Weather() {
     return (
         <>
             <Container sx={{
-                minHeight: '75vh', 
-                padding: '2rem', 
+                minHeight: '75vh',
+                padding: '2rem',
 
             }}>
                 {sun ? <WbSunnySharpIcon sx={sunMoonPosition} /> : <NightsStaySharpIcon sx={sunMoonPosition} />}
-                <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                >
-                    <Autocomplete
-                        value={place}
-                        onChange={(event, newValue) => {
-                            setPlace(newValue);
-                        }}
 
-                        filterOptions={(options, params) => {
-                            const filtered = filter(options, params);
-                            const { inputValue } = params;
-                            // Suggest the creation of a new value
-                            const isExisting = options.some((option) => inputValue === option);
-                            if (inputValue !== '' && !isExisting) {
-                                filtered.push(inputValue);
-                            }
-                            return filtered;
-                        }}
+                <Autocomplete
+                    value={place}
+                    onChange={(event, newValue) => {
+                        setPlace(newValue);
+                    }}
 
-                        selectOnFocus
-                        clearOnBlur
-                        handleHomeEndKeys
-                        id="city-picker"
-                        options={cities}
-                        getOptionLabel={(option) => {
-                            return option;
-                        }}
+                    filterOptions={(options, params) => {
+                        const filtered = filter(options, params);
+                        const { inputValue } = params;
+                        // Suggest the creation of a new value
+                        const isExisting = options.some((option) => inputValue === option);
+                        if (inputValue !== '' && !isExisting) {
+                            filtered.push(inputValue);
+                        }
+                        return filtered;
+                    }}
 
-                        renderOption={(props, option) => <li {...props}>{option}</li>}
+                    // selectOnFocus
+                    // clearOnBlur
+                    // handleHomeEndKeys
+                    id="city-picker"
+                    options={cities}
+                    getOptionLabel={(option) => {
+                        return option;
+                    }}
 
-                        sx={{ width: '100%' }}
-                        freeSolo
-                        renderInput={(params) => (
-                            <TextField {...params} label="Cities" />
-                        )}
-                    />
-                </Box>
+                    renderOption={(props, option) => <li {...props}>{option}</li>}
+
+                    sx={{ width: '100%' }}
+                    freeSolo
+                    renderInput={(params) => (
+                        <TextField {...params} label="Cities" />
+                    )}
+                />
 
                 {weather ?
                     <Grid

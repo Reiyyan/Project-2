@@ -5,7 +5,6 @@ const baseURL = 'http://localhost:8080';
 export async function Login(username, password) {
     let response = await axios.post(`${baseURL}/users/login`, { username, password })
         .then(function (response) {
-            console.log(response);
             return response;
         })
         .catch(function (error) {
@@ -19,7 +18,6 @@ export async function Login(username, password) {
 export async function SignUp(username, password) {
     let response = await axios.post(`${baseURL}/users/signup`, { username, password })
         .then(function (response) {
-            console.log(response);
             return response;
         })
         .catch(function (error) {
